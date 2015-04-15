@@ -1,0 +1,74 @@
+{
+  "name": "metamodels/attribute_levensthein",
+  "description": "MetaModels attribute for maintaining an search index with levensthein support",
+  "keywords": [
+    "contao",
+    "metamodels",
+    "attribute",
+    "levensthein",
+    "filter"
+  ],
+  "type": "contao-module",
+  "homepage": "http://now.metamodel.me/",
+  "license": "LGPL-3.0+",
+  "authors": [
+    {
+      "name": "Christian Schiffler",
+      "email": "c.schiffler@cyberspectrum.de",
+      "homepage": "http://www.cyberspectrum.de",
+      "role": "Developer"
+    },
+    {
+      "name": "Stefan Heimes",
+      "email": "stefan_heimes@hotmail.com",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "email": "mail@metamodel.me",
+    "issues": "https://github.com/MetaModels/attribute_levensthein/issues",
+    "wiki": "http://de.contaowiki.org/MetaModels",
+    "irc": "irc://irc.freenode.org/contao.mm",
+    "source": "https://github.com/MetaModels/attribute_levensthein"
+  },
+  "require": {
+    "php": ">=5.4",
+    "contao/core": "~3.5",
+    "contao-community-alliance/composer-plugin": "~2.0",
+    "metamodels/core": "~2.0",
+    "leounglaub/contao-simple-ajax": "~1.0"
+  },
+  "require-dev": {
+    "cyberspectrum/contao-toolbox": "~0.6",
+    "phpcq/all-tasks": "~1.1",
+    "metamodels/base-unit-tests": "~1.0"
+  },
+  "autoload": {
+    "psr-0": {
+      "MetaModels": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-0": {
+      "MetaModels": "tests"
+    }
+  },
+  "extra": {
+    "contao": {
+      "symlinks": {
+        "contao": "system/modules/metamodelsattribute_levensthein"
+      },
+      "transifex": {
+        "project": "metamodels",
+        "prefix": "attribute_levensthein-",
+        "languages_cto": "contao/languages",
+        "languages_tx": ".tx"
+      }
+    },
+    "branch-alias": {
+      "dev-master": "2.0.x-dev"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
