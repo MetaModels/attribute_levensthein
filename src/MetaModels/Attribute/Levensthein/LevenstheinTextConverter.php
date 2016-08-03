@@ -73,7 +73,11 @@ class LevenstheinTextConverter
      */
     private function sanitizeText($text)
     {
-        $content = str_replace(array("\n", "\r", "\t", '&#160;', '&nbsp;'), ' ', $text);
+        $content = str_replace(
+            array("\n", "\r", "\t", '&#160;', '&nbsp;', '&shy;'),
+            array(' ', ' ', ' ', ' ', ' ', ''),
+            $text
+        );
 
         // Remove quotes
         $content = str_replace(array('´', '`'), "'", $content);
