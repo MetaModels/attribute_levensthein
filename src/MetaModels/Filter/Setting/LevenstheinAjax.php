@@ -26,8 +26,36 @@ use MetaModels\MetaModelsServiceContainer;
 /**
  * This class handles the ajax requests.
  */
-class LevenstheinAjax
+class LevenstheinAjax extends \Frontend
 {
+    /**
+     * Initialize the object
+     */
+    public function __construct()
+    {
+        // Load the user object before calling the parent constructor
+        $this->import('FrontendUser', 'User');
+        parent::__construct();
+
+        // Check whether a user is logged in
+        define('BE_USER_LOGGED_IN', $this->getLoginStatus('BE_USER_AUTH'));
+        define('FE_USER_LOGGED_IN', $this->getLoginStatus('FE_USER_AUTH'));
+
+        // No back end user logged in
+        if (!$_SESSION['DISABLE_CACHE'])
+        {
+            // Maintenance mode (see #4561 and #6353)
+            if (\Config::get('maintenanceMode'))
+            {
+                header('HTTP/1.1 503 Service Unavailable');
+                die_nicely('be_unavailable', 'This site is currently down for maintenance. Please come back later.');
+            }
+
+            // Disable the debug mode (see #6450)
+            \Config::set('debugMode', false);
+        }
+    }
+
     /**
      * Handle the request.
      *
