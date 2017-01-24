@@ -176,7 +176,7 @@ class LevenstheinSearchSetting extends SimpleLookup
         .autocomplete({
             source: function(request, response) {
                 $.getJSON(
-                    "mm_lv_search.php",
+                    "SimpleAjaxFrontend.php",
                     {
                         mm_levensthein_model: "$tableName",
                         mm_levensthein_search: "$attrId",

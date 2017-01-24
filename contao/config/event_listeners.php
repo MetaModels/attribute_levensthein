@@ -24,7 +24,9 @@ use MetaModels\DcGeneral\Events\Table\Attribute\AttributeLevenstheinSubscriber;
 use MetaModels\Events\MetaModelsBootEvent;
 use MetaModels\Filter\Setting\Events\CreateFilterSettingFactoryEvent;
 use MetaModels\Filter\Setting\FilterSettingLevenstheinTypeFactory;
+use MetaModels\Filter\Setting\LevenstheinAjax;
 use MetaModels\MetaModelsEvents;
+use SimpleAjax\Event\SimpleAjax;
 
 return array
 (
@@ -44,5 +46,7 @@ return array
             $event->getFactory()->addTypeFactory(new FilterSettingLevenstheinTypeFactory());
         }
     ),
-
+    SimpleAjax::NAME => array(
+        array(new LevenstheinAjax(), 'handle')
+    )
 );
