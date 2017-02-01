@@ -148,9 +148,7 @@ class LevenstheinSearchSetting extends SimpleLookup
         $arrReturn[$paramName] =
             $this->prepareFrontendFilterWidget($arrWidget, $arrFilterUrl, $arrJumpTo, $objFrontendFilterOptions);
 
-        // FIXME: hardcoded dependency on jquery UI.
-        $GLOBALS['TL_JAVASCRIPT'][] = '//code.jquery.com/ui/1.8.24/jquery-ui.js';
-        $GLOBALS['TL_JQUERY'][]     = <<<EOF
+        $GLOBALS['TL_JQUERY'][] = <<<EOF
   <script>
   $(function() {
     function split(val) {
