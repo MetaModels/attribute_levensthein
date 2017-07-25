@@ -41,14 +41,15 @@ class LevenstheinAjax
      */
     public function handle()
     {
-        if (!($attr = \Input::get('mm_levensthein_search'))
-            || !($table = \Input::get('mm_levensthein_model'))
-            || !($search = \Input::get('search'))
+        $input = \Input::getInstance();
+        if (!($attr = $input->get('mm_levensthein_search'))
+            || !($table = $input->get('mm_levensthein_model'))
+            || !($search = $input->get('search'))
         ) {
             return;
         }
 
-        $GLOBALS['TL_LANGUAGE'] = \Input::get('mm_levensthein_language');
+        $GLOBALS['TL_LANGUAGE'] = $input->get('mm_levensthein_language');
 
         /** @var MetaModelsServiceContainer $container */
         $container = $GLOBALS['container']['metamodels-service-container'];
