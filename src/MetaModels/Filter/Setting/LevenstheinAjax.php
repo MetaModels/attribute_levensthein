@@ -71,7 +71,7 @@ class LevenstheinAjax
         echo json_encode(
             array_map(
                 function ($word) {
-                    return array('value' => $word, 'label' => $word);
+                    return ['value' => $word, 'label' => $word];
                 },
                 $suggestions
             )
