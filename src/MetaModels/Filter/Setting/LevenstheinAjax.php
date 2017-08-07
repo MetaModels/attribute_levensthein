@@ -23,6 +23,8 @@ namespace MetaModels\Filter\Setting;
 
 use MetaModels\Attribute\Levensthein\AttributeLevensthein;
 use MetaModels\MetaModelsServiceContainer;
+use SimpleAjax\Event\SimpleAjax as SimpleAjaxEvent;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * This class handles the ajax requests.
@@ -34,12 +36,10 @@ class LevenstheinAjax
      *
      * @return void
      *
-     * @internal param SimpleAjax\Event\SimpleAjax $event
-     *
      * @SuppressWarnings(PHPMD.Superglobals)
      * @SuppressWarnings(PHPMD.CamelCaseVariableName)
      */
-    public function handle()
+    public function handle(SimpleAjaxEvent $event)
     {
         $input = \Input::getInstance();
         if (!($attr = $input->get('mm_levensthein_search'))
@@ -54,28 +54,22 @@ class LevenstheinAjax
         /** @var MetaModelsServiceContainer $container */
         $container = $GLOBALS['container']['metamodels-service-container'];
 
-        $metaModel = $container->getFactory()->getMetaModel($table);
-        if (!$metaModel) {
-            echo 'MetaModel ' . $table;
-            return;
-        }
-        $attribute = $metaModel->getAttributeById($attr);
-        if (!$attribute) {
-            return;
-        }
         /** @var AttributeLevensthein $attribute */
+        $metaModel = $container->getFactory()->getMetaModel($table);
+        $attribute = $metaModel->getAttributeById($attr);
+        if (!$metaModel || !$attribute) {
+            return;
+        }
 
         $suggestions = $attribute->getSuggestions($search);
-
-        header('Content-Type: application/json');
-        echo json_encode(
-            array_map(
-                function ($word) {
-                    return ['value' => $word, 'label' => $word];
-                },
-                $suggestions
-            )
+        $return      = array_map(
+            function ($word) {
+                return ['value' => $word, 'label' => $word];
+            },
+            $suggestions
         );
-        exit;
+
+        $response = new JsonResponse($return);
+        $event->setResponse($response);
     }
 }
