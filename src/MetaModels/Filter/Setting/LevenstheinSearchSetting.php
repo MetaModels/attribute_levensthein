@@ -120,29 +120,32 @@ class LevenstheinSearchSetting extends SimpleLookup
         $arrJumpTo,
         FrontendFilterOptions $objFrontendFilterOptions
     ) {
-        $arrReturn = array();
+        global $container;
+
+        $arrReturn = [];
         $paramName = $this->getParamName();
         $tableName = $this->getMetaModel()->getTableName();
         $attrId    = $this->get('attr_id');
         $language  = $this->getMetaModel()->getActiveLanguage();
+        $ajaxUrl   = $container['simpleajax.entrypoint-frontend'];
         $this->addFilterParam($paramName);
 
         // Address search.
-        $arrCount  = array();
-        $arrWidget = array(
-            'label'     => array(
+        $arrCount  = [];
+        $arrWidget = [
+            'label'     => [
                 ($this->get('label') ? $this->get('label') : $paramName),
                 'GET: ' . $paramName
-            ),
+            ],
             'inputType' => 'text',
             'count'     => $arrCount,
             'showCount' => $objFrontendFilterOptions->isShowCountValues(),
-            'eval'      => array(
+            'eval'      => [
                 'colname'  => $this->getMetaModel()->getAttributeById($attrId)->getColName(),
                 'urlparam' => $paramName,
                 'template' => $this->get('template'),
-            )
-        );
+            ]
+        ];
         $objFrontendFilterOptions->setAutoSubmit(false);
 
         $arrReturn[$paramName] =
@@ -174,7 +177,7 @@ class LevenstheinSearchSetting extends SimpleLookup
         .autocomplete({
             source: function(request, response) {
                 $.getJSON(
-                    "mm_lv_search.php",
+                    "$ajaxUrl",
                     {
                         mm_levensthein_model: "$tableName",
                         mm_levensthein_search: "$attrId",
