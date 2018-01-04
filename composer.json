@@ -1,14 +1,14 @@
 {
-  "name": "metamodels/attribute_levensthein",
-  "description": "MetaModels attribute for maintaining an search index with levensthein support",
+  "name": "metamodels/attribute_levenshtein",
+  "description": "MetaModels attribute for maintaining a search index with levenshtein support",
   "keywords": [
     "contao",
     "metamodels",
     "attribute",
-    "levensthein",
+    "levenshtein",
     "filter"
   ],
-  "type": "contao-module",
+  "type": "contao-bundle",
   "homepage": "http://now.metamodel.me/",
   "license": "LGPL-3.0+",
   "authors": [
@@ -32,15 +32,18 @@
     "source": "https://github.com/MetaModels/attribute_levensthein"
   },
   "require": {
-    "php": ">=5.4",
-    "contao/core": "~3.5",
-    "contao-community-alliance/composer-plugin": "~2.0",
-    "metamodels/core": "~2.0"
+    "php": "^5.6 || ^7.0",
+    "contao/core-bundle": "^4.4",
+    "metamodels/core": "~2.1@dev",
+    "symfony/dependency-injection": "^3.3",
+    "symfony/http-kernel": "^3.3"
+
   },
   "require-dev": {
     "cyberspectrum/contao-toolbox": "~0.6",
     "phpcq/all-tasks": "~1.1",
-    "metamodels/base-unit-tests": "~1.0"
+    "metamodels/base-unit-tests": "~1.0",
+    "contao/manager-bundle": "~4.4"
   },
   "autoload": {
     "psr-0": {
@@ -54,21 +57,16 @@
   },
   "extra": {
     "contao": {
-      "sources": {
-        "contao": "system/modules/metamodelsattribute_levensthein",
-        "entrypoint/mm_lv_search.php": "mm_lv_search.php"
-      },
       "transifex": {
         "project": "metamodels",
         "prefix": "attribute_levensthein-",
-        "languages_cto": "contao/languages",
+        "languages_cto": "src/Resources/contao/languages",
         "languages_tx": ".tx"
       }
     },
     "branch-alias": {
-      "dev-master": "2.0.x-dev"
+      "dev-master": "2.0.x-dev",
+      "dev-feature/contao4": "2.1.x-dev"
     }
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true
+  }
 }
