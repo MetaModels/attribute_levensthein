@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This file is part of MetaModels/attribute_levensthein.
+ * This file is part of MetaModels/attribute_levenshtein.
  *
- * (c) 2012-2016 The MetaModels team.
+ * (c) 2012-2018 The MetaModels team.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,14 +11,15 @@
  * This project is provided in good faith and hope to be usable by anyone.
  *
  * @package    MetaModels
- * @subpackage AttributeLevensthein
+ * @subpackage AttributeLevenstheinBundle
  * @author     Christian Schiffler <c.schiffler@cyberspectrum.de>
- * @copyright  2012-2016 The MetaModels team.
- * @license    https://github.com/MetaModels/attribute_levensthein/blob/master/LICENSE LGPL-3.0
+ * @author     Richard Henkenjohann <richardhenkenjohann@googlemail.com>
+ * @copyright  2012-2018 The MetaModels team.
+ * @license    https://github.com/MetaModels/attribute_levenshtein/blob/master/LICENSE LGPL-3.0
  * @filesource
  */
 
-namespace MetaModels\Filter\Setting;
+namespace MetaModels\AttributeLevenshteinBundle\FilterSetting;
 
 use MetaModels\Attribute\Levensthein\AttributeLevensthein;
 use MetaModels\Filter\IFilter;
