@@ -21,33 +21,40 @@
 
 namespace MetaModels\AttributeLevenshteinBundle\Test\Attribute;
 
-use MetaModels\Attribute\Levensthein\AttributeLevensthein;
+use MetaModels\Attribute\IAttributeTypeFactory;
+use MetaModels\AttributeLevenshteinBundle\Attribute\AttributeLevenshtein;
+use MetaModels\AttributeLevenshteinBundle\Attribute\LevenshteinAttributeTypeFactory;
+use MetaModels\IMetaModel;
+use MetaModels\MetaModel;
 
 /**
- * Unit tests to test class Decimal.
+ * Test the attribute factory.
  */
-class LevenstheinAttributeTest extends \PHPUnit_Framework_TestCase
+class LevenshteinAttributeTypeFactoryTest extends AttributeTypeFactoryTest
 {
     /**
      * Mock a MetaModel.
      *
+     * @param string $tableName        The table name.
+     *
      * @param string $language         The language.
+     *
      * @param string $fallbackLanguage The fallback language.
      *
-     * @return \MetaModels\IMetaModel
+     * @return IMetaModel
      */
-    protected function mockMetaModel($language, $fallbackLanguage)
+    protected function mockMetaModel($tableName, $language, $fallbackLanguage)
     {
         $metaModel = $this->getMock(
-            'MetaModels\MetaModel',
-            array(),
-            array(array())
+            MetaModel::class,
+            [],
+            [[]]
         );
 
         $metaModel
             ->expects($this->any())
             ->method('getTableName')
-            ->will($this->returnValue('mm_unittest'));
+            ->will($this->returnValue($tableName));
 
         $metaModel
             ->expects($this->any())
@@ -63,13 +70,34 @@ class LevenstheinAttributeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test that the attribute can be instantiated.
+     * Override the method to run the tests on the attribute factories to be tested.
+     *
+     * @return IAttributeTypeFactory[]
+     */
+    protected function getAttributeFactories()
+    {
+        return [new LevenshteinAttributeTypeFactory()];
+    }
+
+    /**
+     * Test creation of a decimal attribute.
      *
      * @return void
      */
-    public function testInstantiation()
+    public function testCreateSelect()
     {
-        $text = new AttributeLevensthein($this->mockMetaModel('en', 'en'));
-        $this->assertInstanceOf('MetaModels\\Attribute\\Levensthein\\AttributeLevenshtein', $text);
+        $factory   = new LevenshteinAttributeTypeFactory();
+        $values    = [
+        ];
+        $attribute = $factory->createInstance(
+            $values,
+            $this->mockMetaModel('mm_test', 'de', 'en')
+        );
+
+        $this->assertInstanceOf(AttributeLevenshtein::class, $attribute);
+
+        foreach ($values as $key => $value) {
+            $this->assertEquals($value, $attribute->get($key), $key);
+        }
     }
 }
