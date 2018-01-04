@@ -21,22 +21,24 @@
 
 namespace MetaModels\AttributeLevenshteinBundle\Attribute;
 
-use MetaModels\Attribute\AbstractAttributeTypeFactory;
+use Doctrine\DBAL\Connection;
+use MetaModels\Attribute\AbstractSimpleAttributeTypeFactory;
+use MetaModels\Helper\TableManipulator;
 
 /**
  * Attribute type factory for levensthein attributes.
  */
-class LevenshteinAttributeTypeFactory extends AbstractAttributeTypeFactory
+class LevenshteinAttributeTypeFactory extends AbstractSimpleAttributeTypeFactory
 {
     /**
      * {@inheritDoc}
      */
-    public function __construct()
+    public function __construct(Connection $connection, TableManipulator $tableManipulator)
     {
-        parent::__construct();
+        parent::__construct($connection, $tableManipulator);
 
         $this->typeName  = 'levensthein';
-        $this->typeIcon  = 'system/modules/metamodelsattribute_levensthein/html/levensthein.png';
-        $this->typeClass = 'MetaModels\Attribute\Levensthein\AttributeLevensthein';
+        $this->typeIcon  = 'bundles/metamodelsattributelevensthein/levensthein.png';
+        $this->typeClass = AttributeLevenshtein::class;
     }
 }

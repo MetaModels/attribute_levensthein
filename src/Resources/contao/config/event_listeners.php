@@ -33,12 +33,6 @@ return array
             new AttributeLevenstheinSubscriber($event->getServiceContainer());
         }
     ),
-    MetaModelsEvents::ATTRIBUTE_FACTORY_CREATE => array(
-        function (CreateAttributeFactoryEvent $event) {
-            $factory = $event->getFactory();
-            $factory->addTypeFactory(new LevenstheinAttributeTypeFactory());
-        }
-    ),
     MetaModelsEvents::FILTER_SETTING_FACTORY_CREATE => array(
         function (CreateFilterSettingFactoryEvent $event) {
             $event->getFactory()->addTypeFactory(new FilterSettingLevenstheinTypeFactory());

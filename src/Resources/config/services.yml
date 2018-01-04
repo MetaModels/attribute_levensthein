@@ -1,1 +1,8 @@
 services:
+    metamodels.attribute_levenshtein.factory:
+        class: MetaModels\AttributeLevenshteinBundle\Attribute\LevenshteinAttributeTypeFactory
+        arguments:
+            - '@database_connection'
+            - '@metamodels.table_manipulator'
+        tags:
+          - { name: metamodels.attribute_factory }
