@@ -31,11 +31,23 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 class MetaModelsAttributeLevenshteinExtension extends Extension
 {
     /**
+     * The configuration files.
+     *
+     * @var string[]
+     */
+    private $files = [
+        'services.yml',
+        'dc-general/table/tl_metamodel_attribute.yml',
+    ];
+
+    /**
      * {@inheritDoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
-        $loader->load('services.yml');
+        foreach ($this->files as $file) {
+            $loader->load($file);
+        }
     }
 }
