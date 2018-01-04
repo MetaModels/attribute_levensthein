@@ -21,18 +21,18 @@
 
 namespace MetaModels\AttributeLevenshteinBundle\FilterRule;
 
-use MetaModels\Attribute\Levensthein\AttributeLevensthein;
+use MetaModels\AttributeLevenshteinBundle\Attribute\AttributeLevenshtein;
 use MetaModels\Filter\FilterRule;
 
 /**
- * Filter attributes for keywords using the LevenstheinSearch algorithm.
+ * Filter attributes for keywords using the LevenshteinSearch algorithm.
  */
 class LevenstheinSearchRule extends FilterRule
 {
     /**
      * The attribute to search in.
      *
-     * @var AttributeLevensthein
+     * @var AttributeLevenshtein
      */
     protected $attribute = null;
 
@@ -46,7 +46,7 @@ class LevenstheinSearchRule extends FilterRule
     /**
      * Creates an instance of a simple query filter rule.
      *
-     * @param AttributeLevensthein $attribute The attribute to be searched.
+     * @param AttributeLevenshtein $attribute The attribute to be searched.
      *
      * @param string               $value     The value to be searched for. Wildcards (* and ? allowed).
      */

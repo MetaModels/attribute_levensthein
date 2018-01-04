@@ -21,14 +21,15 @@
 
 namespace MetaModels\AttributeLevenshteinBundle\FilterSetting;
 
-use MetaModels\Attribute\Levensthein\AttributeLevensthein;
+use MetaModels\AttributeLevenshteinBundle\Attribute\AttributeLevenshtein;
+use MetaModels\AttributeLevenshteinBundle\FilterRule\LevenstheinSearchRule;
 use MetaModels\Filter\IFilter;
 use MetaModels\Filter\Rules\StaticIdList;
-use MetaModels\Filter\Rule\LevenstheinSearchRule;
+use MetaModels\Filter\Setting\SimpleLookup;
 use MetaModels\FrontendIntegration\FrontendFilterOptions;
 
 /**
- * Filter attributes for keywords using the LevenstheinSearch algorithm.
+ * Filter attributes for keywords using the LevenshteinSearch algorithm.
  */
 class LevenshteinSearchSetting extends SimpleLookup
 {
@@ -82,7 +83,7 @@ class LevenshteinSearchSetting extends SimpleLookup
         $value     = $filterUrl[$paramName];
 
         if ($attribute && $paramName && $value) {
-            /** @var AttributeLevensthein $attribute */
+            /** @var AttributeLevenshtein $attribute */
             $filter->addFilterRule(new LevenstheinSearchRule($attribute, $value));
             return;
         }
