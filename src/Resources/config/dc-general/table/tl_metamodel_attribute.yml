@@ -32,7 +32,7 @@ services:
               event: dc-general.view.contao2backend.encode-property-value-for-widget
               method: handle
 
-    metamodels.attribute_levenshtein.listener.table.tl_metamodel_attribute.operation_nutton:
+    metamodels.attribute_levenshtein.listener.table.tl_metamodel_attribute.operation_button:
         class: MetaModels\AttributeLevenshteinBundle\EventListener\DcGeneral\Table\Attribute\OperationButtonListener
         arguments:
             - "@cca.dc-general.scope-matcher"
@@ -49,6 +49,7 @@ services:
             - "@cca.dc-general.scope-matcher"
             - "@metamodels.factory"
             - "@database_connection"
+            - "@event_dispatcher"
         tags:
             - name: kernel.event_listener
               event: dc-general.action

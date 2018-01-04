@@ -23,9 +23,12 @@ namespace MetaModels\AttributeLevenshteinBundle\EventListener\DcGeneral\Table\At
 
 use ContaoCommunityAlliance\Contao\Bindings\ContaoEvents;
 use ContaoCommunityAlliance\Contao\Bindings\Events\System\GetReferrerEvent;
+use ContaoCommunityAlliance\DcGeneral\Contao\RequestScopeDeterminator;
 use ContaoCommunityAlliance\DcGeneral\Data\ModelId;
 use ContaoCommunityAlliance\DcGeneral\Event\AbstractEnvironmentAwareEvent;
 use ContaoCommunityAlliance\DcGeneral\Event\ActionEvent;
+use Doctrine\DBAL\Connection;
+use MetaModels\IFactory;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
@@ -37,6 +40,25 @@ class RegenerateSearchIndexListener extends AbstractListener
      * @var EventDispatcherInterface
      */
     private $dispatcher;
+
+    /**
+     * Create a new instance.
+     *
+     * @param RequestScopeDeterminator $scopeDeterminator The scope determinator.
+     * @param IFactory                 $factory           The MetaModel factory.
+     * @param Connection               $connection        The database connection.
+     * @param EventDispatcherInterface $dispatcher        The event dispatcher.
+     */
+    public function __construct(
+        RequestScopeDeterminator $scopeDeterminator,
+        IFactory $factory,
+        Connection $connection,
+        EventDispatcherInterface $dispatcher
+    ) {
+        parent::__construct($scopeDeterminator, $factory, $connection);
+
+        $this->dispatcher = $dispatcher;
+    }
 
     /**
      * Regenerate the search index when 'rebuild_levensthein' action is called.
