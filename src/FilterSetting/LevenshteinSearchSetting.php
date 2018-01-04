@@ -30,7 +30,7 @@ use MetaModels\FrontendIntegration\FrontendFilterOptions;
 /**
  * Filter attributes for keywords using the LevenstheinSearch algorithm.
  */
-class LevenstheinSearchSetting extends SimpleLookup
+class LevenshteinSearchSetting extends SimpleLookup
 {
     /**
      * Overrides the parent implementation to always return true, as this setting is always optional.

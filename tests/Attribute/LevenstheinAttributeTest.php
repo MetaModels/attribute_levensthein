@@ -70,6 +70,6 @@ class LevenstheinAttributeTest extends \PHPUnit_Framework_TestCase
     public function testInstantiation()
     {
         $text = new AttributeLevensthein($this->mockMetaModel('en', 'en'));
-        $this->assertInstanceOf('MetaModels\\Attribute\\Levensthein\\AttributeLevensthein', $text);
+        $this->assertInstanceOf('MetaModels\\Attribute\\Levensthein\\AttributeLevenshtein', $text);
     }
 }

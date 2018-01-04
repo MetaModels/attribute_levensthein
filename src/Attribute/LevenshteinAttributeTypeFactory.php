@@ -19,12 +19,14 @@
  * @filesource
  */
 
-namespace MetaModels\AttributeLevenshteinBundle\FilterSetting;
+namespace MetaModels\AttributeLevenshteinBundle\Attribute;
+
+use MetaModels\Attribute\AbstractAttributeTypeFactory;
 
 /**
- * Attribute type factory for text filter settings.
+ * Attribute type factory for levensthein attributes.
  */
-class FilterSettingLevenstheinTypeFactory extends AbstractFilterSettingTypeFactory
+class LevenshteinAttributeTypeFactory extends AbstractAttributeTypeFactory
 {
     /**
      * {@inheritDoc}
@@ -33,10 +35,8 @@ class FilterSettingLevenstheinTypeFactory extends AbstractFilterSettingTypeFacto
     {
         parent::__construct();
 
-        $this
-            ->setTypeName('levensthein')
-            ->setTypeIcon('system/modules/metamodelsattribute_levensthein/html/filter_levensthein.png')
-            ->setTypeClass('MetaModels\Filter\Setting\LevenstheinSearchSetting')
-            ->allowAttributeTypes('levensthein');
+        $this->typeName  = 'levensthein';
+        $this->typeIcon  = 'system/modules/metamodelsattribute_levensthein/html/levensthein.png';
+        $this->typeClass = 'MetaModels\Attribute\Levensthein\AttributeLevensthein';
     }
 }

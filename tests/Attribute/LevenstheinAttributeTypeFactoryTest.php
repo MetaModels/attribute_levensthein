@@ -93,7 +93,7 @@ class LevenstheinAttributeTypeFactoryTest extends AttributeTypeFactoryTest
             $this->mockMetaModel('mm_test', 'de', 'en')
         );
 
-        $this->assertInstanceOf('MetaModels\\Attribute\\Levensthein\\AttributeLevensthein', $attribute);
+        $this->assertInstanceOf('MetaModels\\Attribute\\Levensthein\\AttributeLevenshtein', $attribute);
 
         foreach ($values as $key => $value) {
             $this->assertEquals($value, $attribute->get($key), $key);

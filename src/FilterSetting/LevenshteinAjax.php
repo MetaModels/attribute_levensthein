@@ -27,7 +27,7 @@ use MetaModels\MetaModelsServiceContainer;
 /**
  * This class handles the ajax requests.
  */
-class LevenstheinAjax extends \Frontend
+class LevenshteinAjax extends \Frontend
 {
     /**
      * Initialize the object

@@ -28,7 +28,7 @@ use MetaModels\Attribute\ITranslated;
 /**
  * This class implements an general purpose search index for MetaModels to be searched with LevenstheinSearch algorithm.
  */
-class LevenstheinIndexLookup
+class LevenshteinIndexLookup
 {
     /**
      * The database connection to use.
@@ -477,7 +477,7 @@ class LevenstheinIndexLookup
                 if (!empty($results->transliterated)) {
                     $trans = $results->transliterated;
 
-                    if ($this->isAcceptableByLevensthein($chunk, $trans, $distance)) {
+                    if ($this->isAcceptableByLevenshtein($chunk, $trans, $distance)) {
                         $resultSet->addResult($chunk, $results->attribute, $results->item);
                     }
                 }
@@ -519,7 +519,7 @@ class LevenstheinIndexLookup
      *
      * @return bool
      */
-    private function isAcceptableByLevensthein($chunk, $trans, $distance)
+    private function isAcceptableByLevenshtein($chunk, $trans, $distance)
     {
         // Length too short.
         if (strlen($trans) <= $this->minLength) {

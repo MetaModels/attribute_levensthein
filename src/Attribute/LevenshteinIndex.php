@@ -27,7 +27,7 @@ use MetaModels\Attribute\IAttribute;
 /**
  * This class implements an general purpose search index for MetaModels to be searched with LevenstheinSearch algorithm.
  */
-class LevenstheinIndex
+class LevenshteinIndex
 {
     /**
      * The database connection to use.
@@ -64,7 +64,7 @@ class LevenstheinIndex
     public function updateIndex($text, $attribute, $itemId, $language, Blacklist $blacklist)
     {
         // FIXME: converter should be injected.
-        $converter = new LevenstheinTextConverter($blacklist, $language);
+        $converter = new LevenshteinTextConverter($blacklist, $language);
         $words     = $converter->process($text);
         $entry     = $this->lookUpEntry($attribute, $itemId, $language);
 

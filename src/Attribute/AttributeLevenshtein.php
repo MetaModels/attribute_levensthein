@@ -27,19 +27,19 @@ use MetaModels\Attribute\IAttribute;
 /**
  * This class implements an general purpose search index for MetaModels to be searched with LevenstheinSearch algorithm.
  */
-class AttributeLevensthein extends BaseComplex
+class AttributeLevenshtein extends BaseComplex
 {
     /**
      * The index to work with.
      *
-     * @var LevenstheinIndex
+     * @var LevenshteinIndex
      */
     private $index;
 
     /**
      * The index to work with.
      *
-     * @var LevenstheinIndexLookup
+     * @var LevenshteinIndexLookup
      */
     private $indexLookup;
 
@@ -197,12 +197,12 @@ class AttributeLevensthein extends BaseComplex
     /**
      * Retrieve the index instance.
      *
-     * @return LevenstheinIndex
+     * @return LevenshteinIndex
      */
     private function getIndex()
     {
         if (!isset($this->index)) {
-            $this->index = new LevenstheinIndex($this->getMetaModel()->getServiceContainer()->getDatabase());
+            $this->index = new LevenshteinIndex($this->getMetaModel()->getServiceContainer()->getDatabase());
         }
 
         return $this->index;
@@ -211,12 +211,12 @@ class AttributeLevensthein extends BaseComplex
     /**
      * Retrieve the index lookup instance.
      *
-     * @return LevenstheinIndexLookup
+     * @return LevenshteinIndexLookup
      */
     private function getLookup()
     {
         if (!isset($this->indexLookup)) {
-            $this->indexLookup = new LevenstheinIndexLookup(
+            $this->indexLookup = new LevenshteinIndexLookup(
                 $this->getMetaModel()->getServiceContainer()->getDatabase(),
                 $this->getIndexedAttributes(),
                 $this->get('levensthein_distance')

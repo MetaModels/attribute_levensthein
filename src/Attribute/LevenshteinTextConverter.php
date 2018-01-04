@@ -24,7 +24,7 @@ namespace MetaModels\AttributeLevenshteinBundle\Attribute;
 /**
  * This class is used to convert a text into a word list to be used in a search index.
  */
-class LevenstheinTextConverter
+class LevenshteinTextConverter
 {
     /**
      * The blacklist as language => words list.
