@@ -33,10 +33,4 @@ return array
             new AttributeLevenstheinSubscriber($event->getServiceContainer());
         }
     ),
-    MetaModelsEvents::FILTER_SETTING_FACTORY_CREATE => array(
-        function (CreateFilterSettingFactoryEvent $event) {
-            $event->getFactory()->addTypeFactory(new FilterSettingLevenstheinTypeFactory());
-        }
-    ),
-
 );

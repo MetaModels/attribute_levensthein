@@ -1,8 +1,13 @@
 services:
-    metamodels.attribute_levenshtein.factory:
+    metamodels.attribute_levenshtein.attribute_factory:
         class: MetaModels\AttributeLevenshteinBundle\Attribute\LevenshteinAttributeTypeFactory
         arguments:
             - '@database_connection'
             - '@metamodels.table_manipulator'
         tags:
           - { name: metamodels.attribute_factory }
+
+    metamodels.attribute_levenshtein.filter_factory:
+        class: MetaModels\AttributeLevenshteinBundle\FilterSetting\LevenshteinFilterSettingTypeFactory
+        tags:
+          - { name: metamodels.filter_factory }
