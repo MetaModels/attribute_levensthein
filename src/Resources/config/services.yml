@@ -11,3 +11,8 @@ services:
         class: MetaModels\AttributeLevenshteinBundle\FilterSetting\LevenshteinFilterSettingTypeFactory
         tags:
           - { name: metamodels.filter_factory }
+
+    metamodels.attribute_levenshtein.controller.ajax_search:
+        class: MetaModels\AttributeLevenshteinBundle\Controller\Frontend\AjaxSearch
+        arguments:
+            - '@metamodels.factory'

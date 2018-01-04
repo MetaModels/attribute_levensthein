@@ -1,0 +1,6 @@
+metamodels.attribute_levenshtein.ajax_search:
+    path: /mm_lv_search/{table}/{attr}
+    defaults:
+        _scope: frontend
+        _token_check: true
+        _controller: metamodels.attribute_levenshtein.controller.ajax_search
