@@ -22,7 +22,6 @@
 namespace MetaModels\AttributeLevenshteinBundle\Controller\Frontend;
 
 use Contao\CoreBundle\Exception\PageNotFoundException;
-use Contao\Input;
 use MetaModels\AttributeLevenshteinBundle\Attribute\AttributeLevenshtein;
 use MetaModels\Factory;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -58,17 +57,21 @@ class AjaxSearch
      */
     public function __invoke($table, $attr, Request $request)
     {
-        $search = Input::get('search');
-        if (!$search) {
-            throw new PageNotFoundException('No "search" keyword given.');
+        $search   = $request->query->get('search');
+        $language = $request->query->get('language');
+        if (null === $search) {
+            throw new PageNotFoundException('No "search" keyword in query given.');
         }
 
-        $GLOBALS['TL_LANGUAGE'] = Input::get('language');
+        if (null !== $language) {
+            $GLOBALS['TL_LANGUAGE'] = $language;
+        }
 
         $metaModel = $this->factory->getMetaModel($table);
         if (!$metaModel) {
             throw new PageNotFoundException('MetaModel not found: ' . $table);
         }
+
         $attribute = $metaModel->getAttributeById($attr);
         if (!$attribute) {
             throw new PageNotFoundException('Attribute not found: ' . $attr);
