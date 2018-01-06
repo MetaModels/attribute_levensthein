@@ -38,7 +38,7 @@ class LevenshteinAttributeTypeFactory extends AbstractSimpleAttributeTypeFactory
         parent::__construct($connection, $tableManipulator);
 
         $this->typeName  = 'levensthein';
-        $this->typeIcon  = 'bundles/metamodelsattributelevensthein/levensthein.png';
+        $this->typeIcon  = 'bundles/metamodelsattributelevenshtein/levensthein.png';
         $this->typeClass = AttributeLevenshtein::class;
     }
 }
