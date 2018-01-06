@@ -21,6 +21,8 @@
 
 namespace MetaModels\AttributeLevenshteinBundle\Attribute;
 
+use Patchwork\Utf8;
+
 /**
  * This class represents a list of forbidden words.
  */
@@ -87,7 +89,7 @@ class Blacklist
      */
     public function addWord($language, $word)
     {
-        $word = utf8_strtolower($word);
+        $word = Utf8::strtolower($word);
 
         $this->words[$language][$word] = $word;
     }
@@ -123,6 +125,6 @@ class Blacklist
      */
     public function matches($language, $word)
     {
-        return isset($this->words[$language][utf8_strtolower($word)]);
+        return isset($this->words[$language][Utf8::strtolower($word)]);
     }
 }

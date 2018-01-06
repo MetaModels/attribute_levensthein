@@ -21,6 +21,8 @@
 
 namespace MetaModels\AttributeLevenshteinBundle\Attribute;
 
+use Patchwork\Utf8;
+
 /**
  * This class implements an general purpose search string parser.
  */
@@ -195,7 +197,7 @@ class SearchStringParser
      */
     private function addKeywordToken($token)
     {
-        $value = utf8_strtolower(trim($token));
+        $value = Utf8::strtolower(trim($token));
 
         if (empty($value)) {
             return;
@@ -213,7 +215,7 @@ class SearchStringParser
      */
     private function addMustToken($token)
     {
-        $value = utf8_strtolower(trim($token));
+        $value = Utf8::strtolower(trim($token));
 
         if (empty($value)) {
             return;
@@ -233,7 +235,7 @@ class SearchStringParser
      */
     private function addMustNotToken($token)
     {
-        $value = utf8_strtolower(trim($token));
+        $value = Utf8::strtolower(trim($token));
 
         if (empty($value)) {
             return;
@@ -341,7 +343,7 @@ class SearchStringParser
      */
     public function isMustNot($word)
     {
-        return isset($this->mustNot[utf8_strtolower(trim($word))]);
+        return isset($this->mustNot[Utf8::strtolower(trim($word))]);
     }
 
     /**

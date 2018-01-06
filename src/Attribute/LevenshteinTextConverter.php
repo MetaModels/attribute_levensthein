@@ -21,6 +21,8 @@
 
 namespace MetaModels\AttributeLevenshteinBundle\Attribute;
 
+use Patchwork\Utf8;
+
 /**
  * This class is used to convert a text into a word list to be used in a search index.
  */
@@ -83,7 +85,7 @@ class LevenshteinTextConverter
         // Remove quotes
         $content = str_replace(array('´', '`'), "'", $content);
         $content = mb_eregi_replace('[^[:alnum:]\'\.:,\+_-]|- | -|\' | \'|\. |\.$|: |:$|, |,$', ' ', $content);
-        return preg_split('/ +/', utf8_strtolower($content));
+        return preg_split('/ +/', Utf8::strtolower($content));
     }
 
     /**

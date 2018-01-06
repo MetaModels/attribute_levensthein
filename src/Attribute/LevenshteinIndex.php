@@ -23,6 +23,7 @@ namespace MetaModels\AttributeLevenshteinBundle\Attribute;
 
 use Contao\Database;
 use MetaModels\Attribute\IAttribute;
+use Patchwork\Utf8;
 
 /**
  * This class implements an general purpose search index for MetaModels to be searched with LevenstheinSearch algorithm.
@@ -181,10 +182,10 @@ class LevenshteinIndex
      */
     private function normalizeWord($word)
     {
-        if (utf8_detect_encoding($word) == 'ASCII') {
+        if (mb_detect_encoding($word) == 'ASCII') {
             return $word;
         }
 
-        return utf8_romanize($word);
+        return Utf8::toAscii($word);
     }
 }
