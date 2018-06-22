@@ -176,7 +176,7 @@ class LevenshteinSearchSetting extends SimpleLookup
         .autocomplete({
             source: function(request, response) {
                 $.getJSON(
-                    "mm_lv_search/"+$tableName+"/"+$attrId,
+                    "mm_lv_search/$tableName/$attrId",
                     {
                         language: "$language",
                         search: request.term
