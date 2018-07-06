@@ -4,7 +4,7 @@ I confirm that:
 - [ ] I have tested this with the latest version available
 - [ ] I have read documentation @ http://metamodels.readthedocs.org/en/ or http://metamodels.readthedocs.org/de/
 - [ ] I have checked the Contao community forums for references https://community.contao.org/
-- [ ] I have checked existing issues for duplicates and found none @ https://github.com/MetaModels/attribute_langcode/issues?q=is%3Aissue
+- [ ] I have checked existing issues for duplicates and found none @ https://github.com/MetaModels/attribute_levensthein/issues?q=is%3Aissue
 
 ## My environment is:
 
