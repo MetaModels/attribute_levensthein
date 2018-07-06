@@ -116,7 +116,6 @@ class AttributeLevenstheinSubscriber extends BaseSubscriber
         $attribute = $metaModel->getAttributeById(IdSerializer::fromSerialized($input->getParameter('id'))->getId());
         $database  = $metaModel->getServiceContainer()->getDatabase();
 
-        // FIXME: we prune the index hard here.
         $entries = $database
             ->prepare('SELECT id FROM tl_metamodel_levensthein WHERE metamodel=?')
             ->execute($metaModel->get('id'))
@@ -136,8 +135,6 @@ class AttributeLevenstheinSubscriber extends BaseSubscriber
                 ->execute($entries);
         }
 
-        $GLOBALS['WORDS'] = array();
-
         $languageBackup = $GLOBALS['TL_LANGUAGE'];
         foreach ($metaModel->getAvailableLanguages() as $language) {
             $GLOBALS['TL_LANGUAGE'] = $language;
@@ -147,7 +144,11 @@ class AttributeLevenstheinSubscriber extends BaseSubscriber
         }
         $GLOBALS['TL_LANGUAGE'] = $languageBackup;
 
-        asort($GLOBALS['WORDS']);
+        $count = $database->prepare('SELECT
+          COUNT(word)
+          FROM tl_metamodel_levensthein_index
+          WHERE attribute=?
+          GROUP BY word')->execute($attribute->get('id'))->fetchField(0);
 
         $refererEvent = new GetReferrerEvent(true, 'tl_metamodel_attribute');
         $dispatcher->dispatch(ContaoEvents::SYSTEM_GET_REFERRER, $refererEvent);
@@ -165,7 +166,7 @@ class AttributeLevenstheinSubscriber extends BaseSubscriber
 ',
                 $refererEvent->getReferrerUrl(),
                 $GLOBALS['TL_LANG']['MSC']['backBT'],
-                count(array_values(array_unique($GLOBALS['WORDS'])))
+                $count
             )
         );
     }
