@@ -157,8 +157,6 @@ class LevenstheinIndex
             $values[] = $this->normalizeWord($word);
             $values[] = $relevance;
             $values[] = $language;
-
-            $GLOBALS['WORDS'][] = $word;
         }
 
         $this->database
