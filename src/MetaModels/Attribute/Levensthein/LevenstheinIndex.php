@@ -62,7 +62,6 @@ class LevenstheinIndex
      */
     public function updateIndex($text, $attribute, $itemId, $language, Blacklist $blacklist)
     {
-        // FIXME: converter should be injected.
         $converter = new LevenstheinTextConverter($blacklist, $language);
         $words     = $converter->process($text);
         $entry     = $this->lookUpEntry($attribute, $itemId, $language);
