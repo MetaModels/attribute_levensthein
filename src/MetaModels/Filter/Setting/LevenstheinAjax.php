@@ -29,7 +29,10 @@ use MetaModels\MetaModelsServiceContainer;
 class LevenstheinAjax extends \Frontend
 {
     /**
-     * Initialize the object
+     * Initialize the object.
+     *
+     * @SuppressWarnings(PHPMD.Superglobals)
+     * @SuppressWarnings(PHPMD.CamelCaseVariableName)
      */
     public function __construct()
     {
@@ -42,11 +45,9 @@ class LevenstheinAjax extends \Frontend
         define('FE_USER_LOGGED_IN', $this->getLoginStatus('FE_USER_AUTH'));
 
         // No back end user logged in
-        if (!$_SESSION['DISABLE_CACHE'])
-        {
+        if (!$_SESSION['DISABLE_CACHE']) {
             // Maintenance mode (see #4561 and #6353)
-            if (\Config::get('maintenanceMode'))
-            {
+            if (\Config::get('maintenanceMode')) {
                 header('HTTP/1.1 503 Service Unavailable');
                 die_nicely('be_unavailable', 'This site is currently down for maintenance. Please come back later.');
             }
