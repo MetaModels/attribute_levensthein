@@ -123,7 +123,7 @@ class SearchStringParser
         preg_match_all('/"[^"]+"|[\+\-]?[^ ]+\*?/', $searchString, $chunks);
 
         if ($omitLastToken) {
-            $this->partial = array_pop($chunks[0]);
+            $this->partial = utf8_strtolower(array_pop($chunks[0]));
         }
         if (empty($chunks)) {
             return;
@@ -134,7 +134,7 @@ class SearchStringParser
         }
 
         if (!$omitLastToken) {
-            $this->partial = array_pop($chunks[0]);
+            $this->partial = utf8_strtolower(array_pop($chunks[0]));
         }
     }
 

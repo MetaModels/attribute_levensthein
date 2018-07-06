@@ -239,6 +239,8 @@ class ResultSet
      * @param string $word The word to check.
      *
      * @return bool
+     *
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity) - complex method but readable, so we accept a complexity of 10.
      */
     public function hasResultsFor($word)
     {

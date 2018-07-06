@@ -77,7 +77,6 @@ class RegenerateSearchIndexListener extends AbstractListener
         $metaModel = $this->getMetaModel(ModelId::fromSerialized($input->getParameter('pid'))->getId());
         $attribute = $metaModel->getAttributeById(ModelId::fromSerialized($input->getParameter('id'))->getId());
 
-        // FIXME: we prune the index hard here.
         $entries = $this->connection
             ->createQueryBuilder()
             ->select('id')
@@ -109,8 +108,6 @@ class RegenerateSearchIndexListener extends AbstractListener
                 ->execute();
         }
 
-        $GLOBALS['WORDS'] = [];
-
         $languageBackup = $GLOBALS['TL_LANGUAGE'];
         foreach ($metaModel->getAvailableLanguages() as $language) {
             $GLOBALS['TL_LANGUAGE'] = $language;
@@ -120,7 +117,15 @@ class RegenerateSearchIndexListener extends AbstractListener
         }
         $GLOBALS['TL_LANGUAGE'] = $languageBackup;
 
-        asort($GLOBALS['WORDS']);
+        $count = $this->connection
+            ->createQueryBuilder()
+            ->select('COUNT(word)')
+            ->from('tl_metamodel_levensthein_index')
+            ->where('attribute=:attribute')
+            ->setParameter('attribute', $attribute->get('id'))
+            ->groupBy('word')
+            ->execute()
+            ->fetch(\PDO::FETCH_COLUMN);
 
         $refererEvent = new GetReferrerEvent(true, 'tl_metamodel_attribute');
         $this->dispatcher->dispatch(ContaoEvents::SYSTEM_GET_REFERRER, $refererEvent);
@@ -138,7 +143,7 @@ class RegenerateSearchIndexListener extends AbstractListener
 ',
                 $refererEvent->getReferrerUrl(),
                 $GLOBALS['TL_LANG']['MSC']['backBT'],
-                count(array_values(array_unique($GLOBALS['WORDS'])))
+                $count[0]
             )
         );
     }

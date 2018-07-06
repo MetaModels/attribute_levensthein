@@ -109,10 +109,12 @@ class AttributeLevenshtein extends BaseComplex
      * @param int[] $idList The ids of the items to remove votes for.
      *
      * @return void
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function unsetDataFor($idList)
     {
-        // FIXME: delete search index for passed ids.
+        // No op - this attribute is not meant to be manipulated.
     }
 
     /**
@@ -142,7 +144,7 @@ class AttributeLevenshtein extends BaseComplex
         $indexer   = $this->getIndex();
         $blacklist = $this->getBlackList();
         $metaModel = $this->getMetaModel();
-        $language  = $metaModel->getActiveLanguage(); // FIXME: is this language really correct?
+        $language  = $metaModel->getActiveLanguage();
         // Parse the value as text representation for each attribute.
         foreach ($this->getIndexedAttributes() as $attribute) {
             $value = $item->parseAttribute($attribute->getColName());
@@ -234,7 +236,6 @@ class AttributeLevenshtein extends BaseComplex
     private function getBlackList()
     {
         $blacklist = new Blacklist();
-        // FIXME: populate blacklist from config.
         $blacklist->addLanguage(
             'en',
             array (

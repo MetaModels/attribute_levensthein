@@ -22,6 +22,7 @@
 namespace MetaModels\AttributeLevenshteinBundle\Attribute;
 
 use Contao\Database;
+use Contao\Database\Result;
 use MetaModels\Attribute\IAttribute;
 use MetaModels\Attribute\ITranslated;
 use Patchwork\Utf8;
@@ -95,9 +96,9 @@ class LevenshteinIndexLookup
      *
      * @param IAttribute[] $attributeList The list of valid attributes.
      *
-     * @param int          $maxDistance   The maximum allowed levensthein distance.
+     * @param int[]        $maxDistance   The maximum allowed levensthein distance.
      */
-    public function __construct(Database $database, $attributeList, $maxDistance = 2)
+    public function __construct(Database $database, $attributeList, $maxDistance = array(0 => 2))
     {
         $this->database      = $database;
         $this->attributeList = $attributeList;
@@ -380,7 +381,7 @@ class LevenshteinIndexLookup
     /**
      * Find exact matches of chunks and return the parent ids.
      *
-     * @param string             $attributeIds The attributes to search on.
+     * @param string[]           $attributeIds The attributes to search on.
      *
      * @param string             $language     The language key.
      *
@@ -470,17 +471,32 @@ class LevenshteinIndexLookup
                 ->prepare($query)
                 ->execute(array_merge($attributeIds, array($minLen, $maxLen)));
 
-            while ($results->next()) {
-                if (empty($results->attribute) || empty($results->item)) {
-                    continue;
-                }
+            $this->processCandidates($resultSet, $chunk, $results, $distance);
+        }
+    }
 
-                if (!empty($results->transliterated)) {
-                    $trans = $results->transliterated;
+    /**
+     * Process the result list and add acceptable entries to the list.
+     *
+     * @param ResultSet $resultSet The result list to add to.
+     * @param string    $chunk     The chunk being processed.
+     * @param Result    $results   The results to process.
+     * @param int       $distance  The acceptable distance.
+     *
+     * @return void
+     */
+    private function processCandidates(ResultSet $resultSet, $chunk, Result $results, $distance)
+    {
+        while ($results->next()) {
+            if (empty($results->attribute) || empty($results->item)) {
+                continue;
+            }
 
-                    if ($this->isAcceptableByLevenshtein($chunk, $trans, $distance)) {
-                        $resultSet->addResult($chunk, $results->attribute, $results->item);
-                    }
+            if (!empty($results->transliterated)) {
+                $trans = $results->transliterated;
+
+                if ($this->isAcceptableByLevenshtein($chunk, $trans, $distance)) {
+                    $resultSet->addResult($chunk, $results->attribute, $results->item);
                 }
             }
         }

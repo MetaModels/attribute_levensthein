@@ -64,7 +64,6 @@ class LevenshteinIndex
      */
     public function updateIndex($text, $attribute, $itemId, $language, Blacklist $blacklist)
     {
-        // FIXME: converter should be injected.
         $converter = new LevenshteinTextConverter($blacklist, $language);
         $words     = $converter->process($text);
         $entry     = $this->lookUpEntry($attribute, $itemId, $language);
@@ -160,8 +159,6 @@ class LevenshteinIndex
             $values[] = $this->normalizeWord($word);
             $values[] = $relevance;
             $values[] = $language;
-
-            $GLOBALS['WORDS'][] = $word;
         }
 
         $this->database
