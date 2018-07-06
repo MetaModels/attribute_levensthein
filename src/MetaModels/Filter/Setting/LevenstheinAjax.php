@@ -64,6 +64,7 @@ class LevenstheinAjax extends \Frontend
      *
      * @SuppressWarnings(PHPMD.Superglobals)
      * @SuppressWarnings(PHPMD.CamelCaseVariableName)
+     * @SuppressWarnings(PHPMD.ExitExpression)
      */
     public function handle()
     {
