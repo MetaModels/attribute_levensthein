@@ -58,8 +58,8 @@ abstract class AbstractListener extends AbstractAbstainingListener
         Connection $connection
     ) {
         parent::__construct($scopeDeterminator);
-        $this->factory           = $factory;
-        $this->connection        = $connection;
+        $this->factory    = $factory;
+        $this->connection = $connection;
     }
 
     /**
@@ -68,6 +68,8 @@ abstract class AbstractListener extends AbstractAbstainingListener
      * @param string $metaModelId The MetaModel id.
      *
      * @return IMetaModel
+     *
+     * @throws \RuntimeException When the factory has not been set.
      */
     protected function getMetaModel($metaModelId)
     {

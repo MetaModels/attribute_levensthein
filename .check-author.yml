@@ -1,4 +1,13 @@
 exclude:
   languages
 
+copy-left:
+  Christian Schiffler <c.schiffler@cyberspectrum.de>:
+    # Original listeners got split into several files.
+    - src/EventListener/DcGeneral/Table/Attribute/AbstractAbstainingListener.php
+    - src/EventListener/DcGeneral/Table/Attribute/AttributeOptionsListener.php
+    - src/EventListener/DcGeneral/Table/Attribute/LoadDistancesListener.php
+    - src/EventListener/DcGeneral/Table/Attribute/OperationButtonListener.php
+    - src/EventListener/DcGeneral/Table/Attribute/SaveDistancesListener.php
+
 mapping:

@@ -13,6 +13,7 @@
  * @package    MetaModels
  * @subpackage AttributeLevenstheinBundle
  * @author     Richard Henkenjohann <richardhenkenjohann@googlemail.com>
+ * @author     Christian Schiffler <c.schiffler@cyberspectrum.de>
  * @copyright  2012-2018 The MetaModels team.
  * @license    https://github.com/MetaModels/attribute_levenshtein/blob/master/LICENSE LGPL-3.0
  * @filesource

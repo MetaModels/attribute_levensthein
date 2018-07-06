@@ -22,12 +22,13 @@
 namespace MetaModels\AttributeLevenshteinBundle\Test\Attribute;
 
 use MetaModels\AttributeLevenshteinBundle\Attribute\AttributeLevenshtein;
-use MetaModels\MetaModel;
+use MetaModels\IMetaModel;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests to test class Decimal.
  */
-class AttributeLevenshteinTest extends \PHPUnit_Framework_TestCase
+class AttributeLevenshteinTest extends TestCase
 {
     /**
      * Mock a MetaModel.
@@ -35,15 +36,11 @@ class AttributeLevenshteinTest extends \PHPUnit_Framework_TestCase
      * @param string $language         The language.
      * @param string $fallbackLanguage The fallback language.
      *
-     * @return \MetaModels\IMetaModel
+     * @return IMetaModel|\PHPUnit_Framework_MockObject_MockObject
      */
     protected function mockMetaModel($language, $fallbackLanguage)
     {
-        $metaModel = $this->getMock(
-            MetaModel::class,
-            [],
-            [[]]
-        );
+        $metaModel = $this->getMockBuilder(IMetaModel::class)->getMockForAbstractClass();
 
         $metaModel
             ->expects($this->any())

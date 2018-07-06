@@ -32,8 +32,9 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class AjaxSearch
 {
-
     /**
+     * The MetaModels factory.
+     *
      * @var Factory
      */
     private $factory;
@@ -41,7 +42,7 @@ class AjaxSearch
     /**
      * AjaxSearch constructor.
      *
-     * @param Factory $factory
+     * @param Factory $factory The MetaModels factory.
      */
     public function __construct(Factory $factory)
     {
@@ -49,11 +50,18 @@ class AjaxSearch
     }
 
     /**
+     * Perform ajax search
+     *
      * @param string  $table   The MetaModel table name.
      * @param string  $attr    The attribute id.
      * @param Request $request The request.
      *
      * @return JsonResponse The json that get processed in the auto suggestions input.
+     *
+     * @throws PageNotFoundException When no keyword has been given or the MetaModel/attribute does not exist.
+     *
+     * @SuppressWarnings(PHPMD.Superglobals)
+     * @SuppressWarnings(PHPMD.CamelCaseVariableName)
      */
     public function __invoke($table, $attr, Request $request)
     {

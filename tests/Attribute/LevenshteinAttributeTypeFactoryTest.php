@@ -21,16 +21,18 @@
 
 namespace MetaModels\AttributeLevenshteinBundle\Test\Attribute;
 
+use Doctrine\DBAL\Connection;
 use MetaModels\Attribute\IAttributeTypeFactory;
 use MetaModels\AttributeLevenshteinBundle\Attribute\AttributeLevenshtein;
 use MetaModels\AttributeLevenshteinBundle\Attribute\LevenshteinAttributeTypeFactory;
+use MetaModels\Helper\TableManipulator;
 use MetaModels\IMetaModel;
-use MetaModels\MetaModel;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test the attribute factory.
  */
-class LevenshteinAttributeTypeFactoryTest extends AttributeTypeFactoryTest
+class LevenshteinAttributeTypeFactoryTest extends TestCase
 {
     /**
      * Mock a MetaModel.
@@ -41,15 +43,11 @@ class LevenshteinAttributeTypeFactoryTest extends AttributeTypeFactoryTest
      *
      * @param string $fallbackLanguage The fallback language.
      *
-     * @return IMetaModel
+     * @return IMetaModel|\PHPUnit_Framework_MockObject_MockObject
      */
     protected function mockMetaModel($tableName, $language, $fallbackLanguage)
     {
-        $metaModel = $this->getMock(
-            MetaModel::class,
-            [],
-            [[]]
-        );
+        $metaModel = $this->getMockBuilder(IMetaModel::class)->getMockForAbstractClass();
 
         $metaModel
             ->expects($this->any())
@@ -70,13 +68,42 @@ class LevenshteinAttributeTypeFactoryTest extends AttributeTypeFactoryTest
     }
 
     /**
+     * Mock the database connection.
+     *
+     * @return \PHPUnit_Framework_MockObject_MockObject|Connection
+     */
+    private function mockConnection()
+    {
+        return $this->getMockBuilder(Connection::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+    }
+
+    /**
+     * Mock the table manipulator.
+     *
+     * @param Connection $connection The database connection mock.
+     *
+     * @return TableManipulator|\PHPUnit_Framework_MockObject_MockObject
+     */
+    private function mockTableManipulator(Connection $connection)
+    {
+        return $this->getMockBuilder(TableManipulator::class)
+            ->setConstructorArgs([$connection, []])
+            ->getMock();
+    }
+
+    /**
      * Override the method to run the tests on the attribute factories to be tested.
      *
      * @return IAttributeTypeFactory[]
      */
     protected function getAttributeFactories()
     {
-        return [new LevenshteinAttributeTypeFactory()];
+        $connection  = $this->mockConnection();
+        $manipulator = $this->mockTableManipulator($connection);
+
+        return [new LevenshteinAttributeTypeFactory($connection, $manipulator)];
     }
 
     /**
@@ -86,7 +113,10 @@ class LevenshteinAttributeTypeFactoryTest extends AttributeTypeFactoryTest
      */
     public function testCreateSelect()
     {
-        $factory   = new LevenshteinAttributeTypeFactory();
+        $connection  = $this->mockConnection();
+        $manipulator = $this->mockTableManipulator($connection);
+
+        $factory   = new LevenshteinAttributeTypeFactory($connection, $manipulator);
         $values    = [
         ];
         $attribute = $factory->createInstance(

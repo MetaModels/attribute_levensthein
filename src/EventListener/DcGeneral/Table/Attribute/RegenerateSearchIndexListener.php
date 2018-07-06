@@ -37,6 +37,8 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 class RegenerateSearchIndexListener extends AbstractListener
 {
     /**
+     * The event dispatcher.
+     *
      * @var EventDispatcherInterface
      */
     private $dispatcher;
@@ -66,6 +68,9 @@ class RegenerateSearchIndexListener extends AbstractListener
      * @param ActionEvent $event The event.
      *
      * @return void
+     *
+     * @SuppressWarnings(PHPMD.Superglobals)
+     * @SuppressWarnings(PHPMD.CamelCaseVariableName)
      */
     public function handle(ActionEvent $event)
     {
