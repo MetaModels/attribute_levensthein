@@ -141,7 +141,7 @@ class AttributeLevensthein extends BaseComplex
         $indexer   = $this->getIndex();
         $blacklist = $this->getBlackList();
         $metaModel = $this->getMetaModel();
-        $language  = $metaModel->getActiveLanguage(); // FIXME: is this language really correct?
+        $language  = $metaModel->getActiveLanguage();
         // Parse the value as text representation for each attribute.
         foreach ($this->getIndexedAttributes() as $attribute) {
             $value = $item->parseAttribute($attribute->getColName());
