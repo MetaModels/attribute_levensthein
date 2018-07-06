@@ -93,9 +93,9 @@ class LevenstheinIndexLookup
      *
      * @param IAttribute[] $attributeList The list of valid attributes.
      *
-     * @param int          $maxDistance   The maximum allowed levensthein distance.
+     * @param int[]        $maxDistance   The maximum allowed levensthein distance.
      */
-    public function __construct(Database $database, $attributeList, $maxDistance = 2)
+    public function __construct(Database $database, $attributeList, $maxDistance = array(0 => 2))
     {
         $this->database      = $database;
         $this->attributeList = $attributeList;
@@ -378,7 +378,7 @@ class LevenstheinIndexLookup
     /**
      * Find exact matches of chunks and return the parent ids.
      *
-     * @param string             $attributeIds The attributes to search on.
+     * @param string[]           $attributeIds The attributes to search on.
      *
      * @param string             $language     The language key.
      *
