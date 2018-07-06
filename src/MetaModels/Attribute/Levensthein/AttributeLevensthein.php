@@ -233,7 +233,6 @@ class AttributeLevensthein extends BaseComplex
     private function getBlackList()
     {
         $blacklist = new Blacklist();
-        // FIXME: populate blacklist from config.
         $blacklist->addLanguage(
             'en',
             array (
