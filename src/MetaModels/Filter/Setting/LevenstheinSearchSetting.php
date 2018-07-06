@@ -113,6 +113,10 @@ class LevenstheinSearchSetting extends SimpleLookup
 
     /**
      * {@inheritdoc}
+     *
+     * @SuppressWarnings(PHPMD.Superglobals)
+     * @SuppressWarnings(PHPMD.CamelCaseVariableName)
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function getParameterFilterWidgets(
         $arrIds,
