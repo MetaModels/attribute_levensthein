@@ -21,6 +21,7 @@
 namespace MetaModels\Attribute\Levensthein;
 
 use Contao\Database;
+use Contao\Database\Result;
 use MetaModels\Attribute\IAttribute;
 use MetaModels\Attribute\ITranslated;
 
@@ -468,17 +469,32 @@ class LevenstheinIndexLookup
                 ->prepare($query)
                 ->execute(array_merge($attributeIds, array($minLen, $maxLen)));
 
-            while ($results->next()) {
-                if (empty($results->attribute) || empty($results->item)) {
-                    continue;
-                }
+            $this->processCandidates($resultSet, $chunk, $results, $distance);
+        }
+    }
 
-                if (!empty($results->transliterated)) {
-                    $trans = $results->transliterated;
+    /**
+     * Process the result list and add acceptable entries to the list.
+     *
+     * @param ResultSet $resultSet The result list to add to.
+     * @param string    $chunk     The chunk being processed.
+     * @param Result    $results   The results to process.
+     * @param int       $distance  The acceptable distance.
+     *
+     * @return void
+     */
+    private function processCandidates(ResultSet $resultSet, $chunk, Result $results, $distance)
+    {
+        while ($results->next()) {
+            if (empty($results->attribute) || empty($results->item)) {
+                continue;
+            }
 
-                    if ($this->isAcceptableByLevensthein($chunk, $trans, $distance)) {
-                        $resultSet->addResult($chunk, $results->attribute, $results->item);
-                    }
+            if (!empty($results->transliterated)) {
+                $trans = $results->transliterated;
+
+                if ($this->isAcceptableByLevensthein($chunk, $trans, $distance)) {
+                    $resultSet->addResult($chunk, $results->attribute, $results->item);
                 }
             }
         }
