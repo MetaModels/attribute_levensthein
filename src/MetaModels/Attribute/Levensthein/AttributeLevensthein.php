@@ -108,10 +108,12 @@ class AttributeLevensthein extends BaseComplex
      * @param int[] $idList The ids of the items to remove votes for.
      *
      * @return void
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function unsetDataFor($idList)
     {
-        // FIXME: delete search index for passed ids.
+        // No op - this attribute is not meant to be manipulated.
     }
 
     /**
