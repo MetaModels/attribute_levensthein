@@ -35,6 +35,7 @@
     "php": "^5.6 || ^7.0",
     "contao/core": "~3.5",
     "contao-community-alliance/composer-plugin": "~2.0",
+    "contao-community-alliance/dc-general": "~2.0@beta",
     "metamodels/core": "~2.0"
   },
   "require-dev": {
@@ -68,7 +69,5 @@
     "branch-alias": {
       "dev-master": "2.0.x-dev"
     }
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true
+  }
 }
