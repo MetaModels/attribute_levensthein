@@ -30,3 +30,4 @@ services:
         class: MetaModels\AttributeLevenshteinBundle\Controller\Frontend\AjaxSearch
         arguments:
             - '@metamodels.factory'
+        tags: ['controller.service_arguments']
