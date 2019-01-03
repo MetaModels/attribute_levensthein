@@ -33,15 +33,15 @@
   },
   "require": {
     "php": "^5.6 || ^7.0",
-    "contao/core": "^3.5.5",
     "contao-community-alliance/composer-plugin": "^2.0",
     "contao-community-alliance/dc-general": "^2.0@beta",
+    "contao/core": "^3.5.5",
     "metamodels/core": "^2.0"
   },
   "require-dev": {
     "cyberspectrum/contao-toolbox": "^0.7",
-    "phpcq/all-tasks": "^1.2",
-    "metamodels/base-unit-tests": "^1.0.4"
+    "metamodels/base-unit-tests": "^1.0.4",
+    "phpcq/all-tasks": "^1.2"
   },
   "autoload": {
     "psr-0": {
@@ -69,5 +69,8 @@
     "branch-alias": {
       "dev-master": "2.0.x-dev"
     }
+  },
+  "config": {
+    "sort-packages": true
   }
 }
