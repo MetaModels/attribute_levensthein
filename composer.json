@@ -57,12 +57,6 @@
       "sources": {
         "contao": "system/modules/metamodelsattribute_levensthein",
         "entrypoint/mm_lv_search.php": "mm_lv_search.php"
-      },
-      "transifex": {
-        "project": "metamodels",
-        "prefix": "attribute_levensthein-",
-        "languages_cto": "contao/languages",
-        "languages_tx": ".tx"
       }
     },
     "branch-alias": {
