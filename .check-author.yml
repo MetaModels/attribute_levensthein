@@ -1,4 +1,4 @@
 exclude:
-  languages
+  - /^contao\/languages/
 
-mapping:
+mapping: null
