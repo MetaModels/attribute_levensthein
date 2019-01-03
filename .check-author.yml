@@ -2,3 +2,6 @@ exclude:
   - /^contao\/languages/
 
 mapping: null
+
+ignore:
+  - 'Mini Model <minimodel@metamodel.me>'
