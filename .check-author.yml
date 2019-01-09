@@ -1,5 +1,8 @@
+ignore:
+  - 'Mini Model <minimodel@metamodel.me>'
+
 exclude:
-  languages
+  - /^src\/Resources\/contao\/languages/
 
 copy-left:
   Christian Schiffler <c.schiffler@cyberspectrum.de>:
@@ -10,4 +13,4 @@ copy-left:
     - src/EventListener/DcGeneral/Table/Attribute/OperationButtonListener.php
     - src/EventListener/DcGeneral/Table/Attribute/SaveDistancesListener.php
 
-mapping:
+mapping: null

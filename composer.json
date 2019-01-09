@@ -33,15 +33,14 @@
   },
   "require": {
     "php": "^5.6 || ^7.0",
-    "contao/core-bundle": "^4.4",
     "contao-community-alliance/dc-general": "^2.1@dev",
-    "metamodels/core": "~2.1@dev",
+    "contao/core-bundle": "^4.4",
+    "metamodels/core": "^2.1@dev",
     "symfony/dependency-injection": "^3.3 || ^4.0",
     "symfony/http-kernel": "^3.3 || ^4.0"
 
   },
   "require-dev": {
-    "cyberspectrum/contao-toolbox": "^0.7",
     "phpcq/all-tasks": "^1.2",
     "contao/manager-bundle": "~4.4"
   },
@@ -57,17 +56,12 @@
   },
   "extra": {
     "contao-manager-plugin": "MetaModels\\AttributeLevenshteinBundle\\ContaoManager\\Plugin",
-    "contao": {
-      "transifex": {
-        "project": "metamodels",
-        "prefix": "attribute_levensthein-",
-        "languages_cto": "src/Resources/contao/languages",
-        "languages_tx": ".tx"
-      }
-    },
     "branch-alias": {
       "dev-master": "2.0.x-dev",
       "dev-feature/contao4": "2.1.x-dev"
     }
+  },
+  "config": {
+    "sort-packages": true
   }
 }
