@@ -42,7 +42,8 @@
   },
   "require-dev": {
     "phpcq/all-tasks": "^1.2",
-    "contao/manager-bundle": "~4.4"
+    "contao/manager-bundle": "~4.4",
+    "menatwork/contao-multicolumnwizard-bundle": "^3.4.0@beta"
   },
   "autoload": {
     "psr-4": {
