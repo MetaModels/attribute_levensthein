@@ -5,8 +5,7 @@ exclude:
   - /^src\/Resources\/contao\/languages/
 
 copy-left:
-  Christian Schiffler <c.schiffler@cyberspectrum.de>:
-    # Original listeners got split into several files.
+  'Christian Schiffler <c.schiffler@cyberspectrum.de>':
     - src/EventListener/DcGeneral/Table/Attribute/AbstractAbstainingListener.php
     - src/EventListener/DcGeneral/Table/Attribute/AttributeOptionsListener.php
     - src/EventListener/DcGeneral/Table/Attribute/LoadDistancesListener.php
