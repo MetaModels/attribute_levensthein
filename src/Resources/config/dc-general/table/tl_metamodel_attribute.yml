@@ -1,0 +1,56 @@
+services:
+    metamodels.attribute_levenshtein.listener.table.tl_metamodel_attribute.attribute_options:
+        class: MetaModels\AttributeLevenshteinBundle\EventListener\DcGeneral\Table\Attribute\AttributeOptionsListener
+        arguments:
+            - "@cca.dc-general.scope-matcher"
+            - "@metamodels.factory"
+            - "@database_connection"
+        tags:
+            - name: kernel.event_listener
+              event: dc-general.view.contao2backend.get-property-options
+              method: handle
+
+    metamodels.attribute_levenshtein.listener.table.tl_metamodel_attribute.load_distances:
+        class: MetaModels\AttributeLevenshteinBundle\EventListener\DcGeneral\Table\Attribute\LoadDistancesListener
+        arguments:
+            - "@cca.dc-general.scope-matcher"
+            - "@metamodels.factory"
+            - "@database_connection"
+        tags:
+            - name: kernel.event_listener
+              event: dc-general.view.contao2backend.decode-property-value-for-widget
+              method: handle
+
+    metamodels.attribute_levenshtein.listener.table.tl_metamodel_attribute.save_distances:
+        class: MetaModels\AttributeLevenshteinBundle\EventListener\DcGeneral\Table\Attribute\SaveDistancesListener
+        arguments:
+            - "@cca.dc-general.scope-matcher"
+            - "@metamodels.factory"
+            - "@database_connection"
+        tags:
+            - name: kernel.event_listener
+              event: dc-general.view.contao2backend.encode-property-value-for-widget
+              method: handle
+
+    metamodels.attribute_levenshtein.listener.table.tl_metamodel_attribute.operation_button:
+        class: MetaModels\AttributeLevenshteinBundle\EventListener\DcGeneral\Table\Attribute\OperationButtonListener
+        arguments:
+            - "@cca.dc-general.scope-matcher"
+            - "@metamodels.factory"
+            - "@database_connection"
+        tags:
+            - name: kernel.event_listener
+              event: dc-general.view.contao2backend.get-operation-button
+              method: handle
+
+    metamodels.attribute_levenshtein.listener.table.tl_metamodel_attribute.regenerate_search_index:
+        class: MetaModels\AttributeLevenshteinBundle\EventListener\DcGeneral\Table\Attribute\RegenerateSearchIndexListener
+        arguments:
+            - "@cca.dc-general.scope-matcher"
+            - "@metamodels.factory"
+            - "@database_connection"
+            - "@event_dispatcher"
+        tags:
+            - name: kernel.event_listener
+              event: dc-general.action
+              method: handle
