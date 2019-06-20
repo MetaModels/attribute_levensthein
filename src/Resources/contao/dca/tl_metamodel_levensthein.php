@@ -55,7 +55,7 @@ $GLOBALS['TL_DCA']['tl_metamodel_levensthein'] = array
         ),
         'checksum' => array
         (
-            'sql'                     => "varchar(32) NOT NULL default ''"
+            'sql'                     => "varchar(40) NOT NULL default ''"
         ),
     )
 );
