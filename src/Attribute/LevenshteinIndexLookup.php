@@ -518,7 +518,7 @@ class LevenshteinIndexLookup
                 break;
             }
 
-            $distance = $allowedDistance;
+            $distance = (int) $allowedDistance;
         }
 
         return $distance;
