@@ -12,7 +12,7 @@
  * Translations are managed automatically using Transifex. To create a new translation
  * or to help to maintain an existing one, please register at transifex.com.
  *
- * Last-updated: 2019-03-11T19:38:56+01:00
+ * Last-updated: 2019-11-25T19:28:30+01:00
  *
  * @copyright 2012-2019 The MetaModels team.
  * @license   https://github.com/MetaModels/attribute_levensthein/blob/master/LICENSE LGPL-3.0-or-later
@@ -26,7 +26,7 @@ $GLOBALS['TL_LANG']['tl_metamodel_attribute']['levensthein_attributes']['1']    
 $GLOBALS['TL_LANG']['tl_metamodel_attribute']['levensthein_distance']['0']            = 'Maximaler Levenshtein-Abstand';
 $GLOBALS['TL_LANG']['tl_metamodel_attribute']['levensthein_distance']['1']            = 'Bitte wählen Sie den maximalen Abstand für den Levenshtein-Algorithmus.';
 $GLOBALS['TL_LANG']['tl_metamodel_attribute']['levensthein_distance_distance']['0']   = 'Erlaubter Abstand';
-$GLOBALS['TL_LANG']['tl_metamodel_attribute']['levensthein_distance_wordlength']['0'] = 'Maximale Wortlänge';
+$GLOBALS['TL_LANG']['tl_metamodel_attribute']['levensthein_distance_wordlength']['0'] = 'Minimale Wortlänge';
 $GLOBALS['TL_LANG']['tl_metamodel_attribute']['rebuild_levensthein']                  = 'Suchindex neu aufbauen.';
 $GLOBALS['TL_LANG']['tl_metamodel_attribute']['typeOptions']['levensthein']           = 'Levenshtein-gestützte Suche';
 
