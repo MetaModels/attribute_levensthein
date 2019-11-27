@@ -13,6 +13,7 @@
  * @package    MetaModels/attribute_levensthein
  * @author     Christian Schiffler <c.schiffler@cyberspectrum.de>
  * @author     Richard Henkenjohann <richardhenkenjohann@googlemail.com>
+ * @author     Ingolf Steinhardt <info@e-spin.de>
  * @copyright  2012-2019 The MetaModels team.
  * @license    https://github.com/MetaModels/attribute_levensthein/blob/master/LICENSE LGPL-3.0-or-later
  * @filesource
@@ -41,13 +42,7 @@ class LoadDistancesListener extends AbstractListener
             return;
         }
 
-        $processed = [];
-
-        foreach ((array) $event->getValue() as $wordLength => $distance) {
-            $processed[] = ['wordLength' => $wordLength, 'distance' => $distance];
-        }
-
-        $event->setValue(serialize($processed));
+        $event->setValue(serialize((array) $event->getValue()));
     }
 
     /**
