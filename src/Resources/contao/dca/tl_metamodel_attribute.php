@@ -13,6 +13,7 @@
  * @package    MetaModels/attribute_levensthein
  * @author     Christian Schiffler <c.schiffler@cyberspectrum.de>
  * @author     Richard Henkenjohann <richardhenkenjohann@googlemail.com>
+ * @author     Ingolf Steinhardt <info@e-spin.de>
  * @copyright  2012-2019 The MetaModels team.
  * @license    https://github.com/MetaModels/attribute_levensthein/blob/master/LICENSE LGPL-3.0-or-later
  * @filesource
@@ -53,11 +54,11 @@ $GLOBALS['TL_DCA']['tl_metamodel_attribute']['fields']['levensthein_distance'] =
                 'label'     => &$GLOBALS['TL_LANG']['tl_metamodel_attribute']['levensthein_distance_distance'],
                 'inputType' => 'select',
                 'options'   => array(0,1,2,3,4,5,6,7,8,9,10),
+                'default'   => '2',
                 'eval'      => array
                 (
                     'includeBlankOption' => true,
                     'style'              => 'width:115px',
-                    'default'            => '2',
                     'chosen'             => 'true'
                 )
             ),
