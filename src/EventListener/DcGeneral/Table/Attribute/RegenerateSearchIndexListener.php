@@ -116,11 +116,10 @@ class RegenerateSearchIndexListener extends AbstractListener
 
         $count = $this->connection
             ->createQueryBuilder()
-            ->select('COUNT(word)')
+            ->select('COUNT(DISTINCT word)')
             ->from('tl_metamodel_levensthein_index')
-            ->where('attribute=:attribute')
-            ->setParameter('attribute', $attribute->get('id'))
-            ->groupBy('word')
+            ->where('pid IN (SELECT id FROM tl_metamodel_levensthein WHERE metamodel=:metamodel)')
+            ->setParameter('metamodel', $metaModel->get('id'))
             ->execute()
             ->fetch(\PDO::FETCH_COLUMN);
 
