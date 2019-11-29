@@ -139,7 +139,7 @@ class RegenerateSearchIndexListener extends AbstractListener
 ',
                 $refererEvent->getReferrerUrl(),
                 $GLOBALS['TL_LANG']['MSC']['backBT'],
-                $count[0]
+                $count
             )
         );
     }
