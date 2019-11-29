@@ -29,7 +29,7 @@ services:
             - "@database_connection"
         tags:
             - name: kernel.event_listener
-              event: dc-general.view.contao2backend.encode-property-value-for-widget
+              event: dc-general.view.contao2backend.encode-property-value-from-widget
               method: handle
 
     metamodels.attribute_levenshtein.listener.table.tl_metamodel_attribute.operation_button:
