@@ -88,7 +88,7 @@ class RegenerateSearchIndexListener extends AbstractListener
             ->where('metamodel=:metamodel')
             ->setParameter('metamodel', $metaModel->get('id'))
             ->execute()
-            ->fetch(\PDO::FETCH_COLUMN);
+            ->fetchAll(\PDO::FETCH_COLUMN);
 
         $this->connection
             ->createQueryBuilder()
@@ -100,15 +100,8 @@ class RegenerateSearchIndexListener extends AbstractListener
             $this->connection
                 ->createQueryBuilder()
                 ->delete('tl_metamodel_levensthein_index')
-                ->where('pid=:pid')
-                ->setParameter('pid', $metaModel->get('id'))
-                ->execute();
-
-            $this->connection
-                ->createQueryBuilder()
-                ->delete('tl_metamodel_levensthein_index')
                 ->where('pid IN(:pids)')
-                ->setParameter('pids', array_fill(0, count($entries), $entries))
+                ->setParameter('pids', $entries, Connection::PARAM_STR_ARRAY)
                 ->execute();
         }
 
