@@ -35,9 +35,8 @@ $GLOBALS['TL_DCA']['tl_metamodel_attribute']['fields']['levensthein_distance'] =
     'inputType' => 'multiColumnWizard',
     'eval'      => array
     (
-        'disableSorting' => true,
-        'hideButtons'    => true,
-        'columnFields'   => array
+        'disableSorting'     => true,
+        'columnFields' => array
         (
             'wordLength' => array
             (
