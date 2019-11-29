@@ -163,6 +163,6 @@ class RegenerateSearchIndexListener extends AbstractListener
     {
         /** @var ActionEvent $event */
         return parent::wantToHandle($event)
-               && 'rebuild_levensthein' === $event->getAction();
+               && 'rebuild_levensthein' === $event->getAction()->getName();
     }
 }
