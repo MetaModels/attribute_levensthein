@@ -88,7 +88,7 @@ class RegenerateSearchIndexListener extends AbstractListener
             ->where('metamodel=:metamodel')
             ->setParameter('metamodel', $metaModel->get('id'))
             ->execute()
-            ->fetch(\PDO::FETCH_COLUMN);
+            ->fetchAll(\PDO::FETCH_COLUMN);
 
         $this->connection
             ->createQueryBuilder()
@@ -100,15 +100,8 @@ class RegenerateSearchIndexListener extends AbstractListener
             $this->connection
                 ->createQueryBuilder()
                 ->delete('tl_metamodel_levensthein_index')
-                ->where('pid=:pid')
-                ->setParameter('pid', $metaModel->get('id'))
-                ->execute();
-
-            $this->connection
-                ->createQueryBuilder()
-                ->delete('tl_metamodel_levensthein_index')
                 ->where('pid IN(:pids)')
-                ->setParameter('pids', array_fill(0, count($entries), $entries))
+                ->setParameter('pids', $entries, Connection::PARAM_STR_ARRAY)
                 ->execute();
         }
 
@@ -123,11 +116,10 @@ class RegenerateSearchIndexListener extends AbstractListener
 
         $count = $this->connection
             ->createQueryBuilder()
-            ->select('COUNT(word)')
+            ->select('COUNT(DISTINCT word)')
             ->from('tl_metamodel_levensthein_index')
-            ->where('attribute=:attribute')
-            ->setParameter('attribute', $attribute->get('id'))
-            ->groupBy('word')
+            ->where('pid IN (SELECT id FROM tl_metamodel_levensthein WHERE metamodel=:metamodel)')
+            ->setParameter('metamodel', $metaModel->get('id'))
             ->execute()
             ->fetch(\PDO::FETCH_COLUMN);
 
@@ -147,7 +139,7 @@ class RegenerateSearchIndexListener extends AbstractListener
 ',
                 $refererEvent->getReferrerUrl(),
                 $GLOBALS['TL_LANG']['MSC']['backBT'],
-                $count[0]
+                $count
             )
         );
     }
@@ -163,6 +155,6 @@ class RegenerateSearchIndexListener extends AbstractListener
     {
         /** @var ActionEvent $event */
         return parent::wantToHandle($event)
-               && 'rebuild_levensthein' === $event->getAction();
+               && 'rebuild_levensthein' === $event->getAction()->getName();
     }
 }

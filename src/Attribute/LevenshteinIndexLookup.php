@@ -212,16 +212,16 @@ class LevenshteinIndexLookup
                 $results->addResults('-all-', $attribute, $ids);
             }
         }
-        $items = $results->getCombinedResults($this->attributeList);
+        $items = array_filter($results->getCombinedResults($this->attributeList));
 
-        if (array_filter($items)) {
+        if ($items) {
             return $items;
         }
 
         // Try via levensthein now.
         $this->getLevenstheinCandidates($attributeIds, $parser, $results);
 
-        return $results->getCombinedResults($this->attributeList);
+        return array_filter($results->getCombinedResults($this->attributeList));
     }
 
     /**
