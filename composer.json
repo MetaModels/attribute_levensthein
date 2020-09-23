@@ -1,5 +1,5 @@
 {
-  "name": "metamodels/attribute_levenshtein",
+  "name": "metamodels/attribute_levensthein",
   "description": "MetaModels attribute for maintaining a search index with levenshtein support",
   "keywords": [
     "contao",
