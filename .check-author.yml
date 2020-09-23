@@ -4,6 +4,10 @@ ignore:
 exclude:
   - /^src\/Resources\/contao\/languages/
 
+mapping:
+  'Ingolf Steinhardt <info@e-spin.de>':
+    - 'zonky2 <info@e-spin.de>'
+
 copy-left:
   'Christian Schiffler <c.schiffler@cyberspectrum.de>':
     - src/EventListener/DcGeneral/Table/Attribute/AbstractAbstainingListener.php
