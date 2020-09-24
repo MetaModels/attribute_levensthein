@@ -15,5 +15,3 @@ copy-left:
     - src/EventListener/DcGeneral/Table/Attribute/LoadDistancesListener.php
     - src/EventListener/DcGeneral/Table/Attribute/OperationButtonListener.php
     - src/EventListener/DcGeneral/Table/Attribute/SaveDistancesListener.php
-
-mapping: null
