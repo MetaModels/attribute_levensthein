@@ -1,5 +1,5 @@
 {
-  "name": "metamodels/attribute_levenshtein",
+  "name": "metamodels/attribute_levensthein",
   "description": "MetaModels attribute for maintaining a search index with levenshtein support",
   "keywords": [
     "contao",
@@ -36,8 +36,8 @@
     "contao-community-alliance/dc-general": "^2.1.0",
     "contao/core-bundle": "^4.4.8",
     "metamodels/core": "^2.1",
-    "symfony/dependency-injection": "^3.3 || ^4.0",
-    "symfony/http-kernel": "^3.3 || ^4.0"
+    "symfony/dependency-injection": "^3.3 || ^4.1.12",
+    "symfony/http-kernel": "^3.3 || ^4.4.13"
   },
   "require-dev": {
     "contao/manager-plugin": "^2.1",

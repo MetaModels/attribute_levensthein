@@ -4,6 +4,10 @@ ignore:
 exclude:
   - /^src\/Resources\/contao\/languages/
 
+mapping:
+  'Ingolf Steinhardt <info@e-spin.de>':
+    - 'zonky2 <info@e-spin.de>'
+
 copy-left:
   'Christian Schiffler <c.schiffler@cyberspectrum.de>':
     - src/EventListener/DcGeneral/Table/Attribute/AbstractAbstainingListener.php
@@ -11,5 +15,3 @@ copy-left:
     - src/EventListener/DcGeneral/Table/Attribute/LoadDistancesListener.php
     - src/EventListener/DcGeneral/Table/Attribute/OperationButtonListener.php
     - src/EventListener/DcGeneral/Table/Attribute/SaveDistancesListener.php
-
-mapping: null
