@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/MetaModels/attribute_levensthein.svg)](https://travis-ci.org/MetaModels/attribute_levensthein)
+[![Build Status](https://travis-ci.com/MetaModels/attribute_levensthein.svg?branch=master)](https://travis-ci.com/github/MetaModels/attribute_levensthein)
 [![Latest Version tagged](http://img.shields.io/github/tag/MetaModels/attribute_levensthein.svg)](https://github.com/MetaModels/attribute_levensthein/tags)
 [![Latest Version on Packagist](http://img.shields.io/packagist/v/MetaModels/attribute_levensthein.svg)](https://packagist.org/packages/MetaModels/attribute_levensthein)
 [![Installations via composer per month](http://img.shields.io/packagist/dm/MetaModels/attribute_levensthein.svg)](https://packagist.org/packages/MetaModels/attribute_levensthein)
