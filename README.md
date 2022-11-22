@@ -6,6 +6,8 @@
 Levensthein
 ===========
 
+The repository has a corrected name Levenshtein and can now be found under https://github.com/MetaModels/attribute_levenshtein.
+
 The levensthein attribute maintains an index of keywords across other attributes which can be searched using the 
 levensthein algorithm.
 
