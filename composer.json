@@ -44,6 +44,7 @@
     "menatwork/contao-multicolumnwizard-bundle": "^3.4",
     "phpcq/all-tasks": "^1.2"
   },
+  "abandoned": "metamodels/attribute_levenshtein",
   "autoload": {
     "psr-4": {
       "MetaModels\\AttributeLevenshteinBundle\\": "src"
